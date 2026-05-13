@@ -1255,16 +1255,16 @@ export default function ExytRecommender() {
         content: m.content,
       }));
 
-      const res = await fetch("https://api.anthropic.com/v1/messages", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          model: "claude-sonnet-4-20250514",
-          max_tokens: 1000,
-          system: SYSTEM_PROMPT,
-          messages: apiMessages,
-        }),
-      });
+      const res = await fetch("/api/chat", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    model: "claude-sonnet-4-5-20250929",
+    max_tokens: 1000,
+    system: SYSTEM_PROMPT,
+    messages: apiMessages,
+  }),
+});
 
       const data = await res.json();
       const reply = data.content?.map((b) => b.text || "").join("") || "";
